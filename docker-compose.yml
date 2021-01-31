@@ -1,0 +1,38 @@
+version: "3"
+services:
+  nginx:
+    image: nginx
+    container_name: nginx
+    volumes:
+    - ./html:/usr/share/nginx/html
+    - ./config:/etc/nginx/conf.d
+    network_mode: host
+    restart: always
+  sscdn443:
+    container_name: sscdn
+    image: acrisliu/shadowsocks-libev:latest
+    network_mode: host
+    environment:
+      - PASSWORD=YOUR_PWD
+      - SERVER_ADDR=127.0.0.1
+      - SERVER_PORT=8001
+      - ARGS=--plugin v2ray-plugin --plugin-opts server;path=/cdn -u
+    restart: always
+  ss443:
+    container_name: ss443
+    image: acrisliu/shadowsocks-libev:latest
+    network_mode: host
+    environment:
+      - PASSWORD=YOUR_PWD
+      - SERVER_ADDR=127.0.0.1
+      - SERVER_PORT=8002
+      - ARGS=--plugin v2ray-plugin --plugin-opts server;path=/ssl -u
+    restart: always
+  v2ray:
+    container_name: mv2ray
+    image: v2ray/official
+    network_mode: host
+    volumes:
+    - ./config:/etc/v2ray
+    restart: always
+
