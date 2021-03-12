@@ -4,8 +4,7 @@ cd ./acme.sh
 
 sudo apt-get install socat
 
-acme.sh --issue -d area.example.com -d cdnarea.example.com -w /home/{user}/V2RAYWSS
-
+acme.sh --issue -d area.example.com -d cdnarea.example.com
 
 acme.sh --install-cert -d area.example.com \
 --key-file       /home/{user}/V2RAYWSS/config/autossl.key  \
