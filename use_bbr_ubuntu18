@@ -1,0 +1,9 @@
+modprobe tcp_bbr
+echo "tcp_bbr" >> /etc/modules-load.d/modules.conf
+echo "net.core.default_qdisc=fq" >> /etc/sysctl.conf
+echo "net.ipv4.tcp_congestion_control=bbr" >> /etc/sysctl.conf
+sysctl -p
+sysctl net.ipv4.tcp_available_congestion_control
+sysctl net.ipv4.tcp_congestion_control
+
+#输出结果有bbr，说明已经成功开启bbr。最后运行lsmod | grep bbr，输出结果有tcp_bbr，说明bbr已经成功启动
