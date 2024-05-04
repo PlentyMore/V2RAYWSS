@@ -9,11 +9,12 @@
     "settings":{
       "clients":[
         {
-          "id":"693b1776-f248-0d28-2f08-dcb3f73f10f3",
+          "id":"YOU_PWD",
           "alterId":2
         }
       ]
     },
+    "tag":"v2home",
     "protocol":"vmess",
     "port":10003,
     "listen": "127.0.0.1",
@@ -24,6 +25,25 @@
       },
       "network":"ws"
     }
+  },
+  {
+    "protocol":"shadowsocks",
+    "port":10005,
+    "settings": {
+      "method": "chacha20-ietf-poly1305",
+      "password": "YOUR_PWD",
+      "level": 0,
+      "network": "tcp,udp"
+    },
+    "listen": "127.0.0.1",
+    "streamSettings":{
+      "wsSettings":{
+        "path":"/ws",
+        "headers":{}
+      },
+      "network":"ws"
+    },
+    "tag":"ssws"
   }
   ],
   "outbounds": [{
@@ -31,4 +51,3 @@
     "settings": {}
   }]
 }
-
